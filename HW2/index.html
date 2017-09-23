@@ -12,14 +12,14 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="myDiv">
 		<center><h1>Bubble Sort</h1></center><br>
 				<h3>Please enter five numbers between 0 and 5000.</h3>
 
-
+		<div id="init">
 		<button id="button1">Enter</button>
-		<input id="iCount"></input>
-
+		<input id="iCount"></input><br><br>
+		</div>
 		<form id="regForm">
 		  <!--<div class="form-group">
 		    <label>Input 1</label>
@@ -43,7 +43,12 @@
 		  </div><br><br>
 		  <button type="submit" class="btn btn-default">Submit</button>-->
 		  
-		</form></center>
+		</form>
+		<div id="sortButtonBox"> 
+			<button id="bSort">Sort</button>
+			<button id="bAniTest">Test Animation</button>
+		 </div>
+		</center>
 
 
 
@@ -63,10 +68,10 @@
 
   <script>
   			var totalCount = 0;
-
+  			var arrInputs = [];
 
   			function addInput(count){
-  				var outputString = '<input type="number" min="0" max="5000" class="form-control" id="input' + count + '" name="input' + count + '">';
+  				var outputString = '<input type="number" min="0" max="5000" class="iField" id="input' + count + '" name="input' + count + '"> <br>';
   				return outputString;
   			}
 
@@ -81,27 +86,45 @@
   					$('#regForm').append(addInput(i));
   				}
 
-  				$('#button1').hide();
-  				$('#iCount').hide();
-
+  				$('#init').hide();
+  				
+				var arrInputs2 = [];
   				//var temp = 1;
   				//$('input1').val('test');
   				for(var i = 0;i< totalCount;i++){
   					$('#input' + i).val(Math.floor((Math.random() * 5000) + 1));
+  					arrInputs.push($("#input" + i).val());
+  					arrInputs2.push($("#input" + i).val());
   				}
+
+  				
+				console.dir(arrInputs2);
+
+  				bubbleSort();
+
+  				console.dir(arrInputs);
   			});
 
-			function bubbleSort(items) {  
-			    var length = items.length;
+			function bubbleSort() { 
+				console.dir("Sort Begins: "); 
+			    var length = arrInputs.length;
+			    console.dir("Length: " + length);
 			    for (var i = (length - 1); i >= 0; i--) {
 			        //Number of passes
 			        for (var j = (length - i); j > 0; j--) {
 			            //Compare the adjacent positions
-			            if (items[j] < items[j - 1]) {
+			            console.dir($("#input" + j).val() + " < " + $("#input" + (j - 1)).val());
+			            if (arrInputs[j] < arrInputs[j-1]) {
 			                //Swap the numbers
-			                var tmp = items[j];
-			                items[j] = items[j - 1];
-			                items[j - 1] = tmp;
+			                var tmp = arrInputs[j];
+			                arrInputs[j] = arrInputs[j - 1];
+			                arrInputs[j - 1] = tmp;
+			                console.dir("Swap");
+
+			                //RUN ANIMATION
+			                $("#input" + j).val(arrInputs[j]);
+			                $("#input" + (j - 1)).val(arrInputs[j - 1]);
+
 			            }
 			        }
 			    }

@@ -1,4 +1,4 @@
-/*!
+
  * Bootstrap v2.3.2
  *
  * Copyright 2013 Twitter, Inc
@@ -4403,7 +4403,9 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .container {
-  width: auto;
+  width: 60%;
+  background-color: black;
+  margin: auto;
 }
 
 .nav-collapse.collapse {
