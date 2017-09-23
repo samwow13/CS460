@@ -66,7 +66,7 @@
 
 
   			function addInput(count){
-  				var outputString = '<div class="form-group"><label>Input ' + count + '</label><input type="number" min="0" max="5000" class="form-control" id="input' + count + '" name="input' + count + '"></div>';
+  				var outputString = '<input type="number" min="0" max="5000" class="form-control" id="input' + count + '" name="input' + count + '">';
   				return outputString;
   			}
 
@@ -91,7 +91,21 @@
   				}
   			});
 
-
+			function bubbleSort(items) {  
+			    var length = items.length;
+			    for (var i = (length - 1); i >= 0; i--) {
+			        //Number of passes
+			        for (var j = (length - i); j > 0; j--) {
+			            //Compare the adjacent positions
+			            if (items[j] < items[j - 1]) {
+			                //Swap the numbers
+			                var tmp = items[j];
+			                items[j] = items[j - 1];
+			                items[j - 1] = tmp;
+			            }
+			        }
+			    }
+			}
   
   	
   </script>
