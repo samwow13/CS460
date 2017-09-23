@@ -16,6 +16,10 @@
 		<center><h1>Bubble Sort</h1></center><br>
 				<h3>Please enter five numbers between 0 and 5000.</h3>
 
+
+		<button id="button1">Enter</button>
+		<input id="iCount"></input>
+
 		<form id="regForm">
 		  <!--<div class="form-group">
 		    <label>Input 1</label>
@@ -40,8 +44,7 @@
 		  <button type="submit" class="btn btn-default">Submit</button>-->
 		  
 		</form></center>
-		  <button onClick="plusButton()" class="btn btn-default">Add</button>
-		  <button onClick="writeText('text')" class="btn btn-default">Write</button>
+
 
 
 	</div>
@@ -56,40 +59,40 @@
   	src="https://code.jquery.com/jquery-3.2.1.js"
   	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   	crossorigin="anonymous">
-
-
-  	}
-
-
-  </script>
+ </script>
 
   <script>
-  	
-  		var totalCount = 0;
-  		var aInput = [];
+  			var totalCount = 0;
 
-  	 	function addButton(count){
- 
-  			document.getElementById("regForm").innerHTML += "<div class='form-group'> <label>Input " + count + "</label> <input type='number' min='0' max='5000' class='form-control' id='input" + count + " 'name='input"+ count +"'></div>";
 
-  		
-  		}
+  			function addInput(count){
+  				var outputString = '<div class="form-group"><label>Input ' + count + '</label><input type="number" min="0" max="5000" class="form-control" id="input' + count + '" name="input' + count + '"></div>';
+  				return outputString;
+  			}
 
-  		function plusButton(){
-  			addButton(totalCount);
-  			aInput[totalCount] = document.getElementById("input" + totalCount);
-  			//aInput[totalCount].value = "text";
-  			totalCount++;
-  			//document.getElementById("input 0").setAttribute('value', 'text');
-  		}
 
-  		function writeText(inputText){
-  			//alert(document.getElementById("input1").value);
-  			//document.getElementById("input0").setAttribute('value', inputText);
-  			$("input" + totalCount).get(inputText);
-  		}
 
-  		
+
+  			$('button').click(function(){
+  				totalCount = $('#iCount').val();
+  				console.dir(totalCount);
+
+  				for(var i = 0;i < totalCount;i++){
+  					$('#regForm').append(addInput(i));
+  				}
+
+  				$('#button1').hide();
+  				$('#iCount').hide();
+
+  				//var temp = 1;
+  				//$('input1').val('test');
+  				for(var i = 0;i< totalCount;i++){
+  					$('#input' + i).val(Math.floor((Math.random() * 5000) + 1));
+  				}
+  			});
+
+
+  
   	
   </script>
 
