@@ -21,33 +21,13 @@
 		<input id="iCount"></input><br><br>
 		</div>
 		<form id="regForm">
-		  <!--<div class="form-group">
-		    <label>Input 1</label>
-		    <input type="number" min="0" max="5000" class="form-control" id="input1" name="input1">
-		  </div>
-		  <div class="form-group">
-		    <label>Input 2</label>
-		    <input type="number" min="0" max="5000" class="form-control" id="input2" name="input2">
-		  </div>	  
-		  <div class="form-group">
-		    <label>Input 3</label>
-		    <input type="number" min="0" max="5000" class="form-control" id="input3" name="input3">
-		  </div>
-		  <div class="form-group">
-		    <label>Input 4</label>
-		    <input type="number" min="0" max="5000" class="form-control" id="input4" name="input4">
-		  </div>
-		  <div class="form-group">
-		    <label>Input 5</label>
-		    <input type="number" min="0" max="5000" class="form-control" id="input5" name="input5">
-		  </div><br><br>
-		  <button type="submit" class="btn btn-default">Submit</button>-->
-		  
+		<!-- THIS WHERE INPUTS GO -->		  
 		</form>
-		<div id="sortButtonBox"> 
-			<button id="bSort">Sort</button>
-			<button id="bAniTest">Test Animation</button>
+		<div id="sortButtonBox" style="padding: 0px 0px 30px 0px;"> 
+			<button id="bSort" onClick="bubbleSort()">Sort</button>
+			<button id="bAniTest" onClick="tableMaker()">Test Animation</button>
 		 </div>
+		 <div id="tableContainer" style="margin:auto"></div>
 		</center>
 
 
@@ -67,18 +47,71 @@
  </script>
 
   <script>
+  			var aniList = [];
+  			var aniPoint = 0;
+
   			var totalCount = 0;
   			var arrInputs = [];
+  			var arrInputs2 = [];
+  			var moveIt = ( $('#input0').height() * 2) + 2;
 
+  			//INPUT STRING GENERATOR
   			function addInput(count){
   				var outputString = '<input type="number" min="0" max="5000" class="iField" id="input' + count + '" name="input' + count + '"> <br>';
   				return outputString;
   			}
 
+  			//SWITCH ANIMATION BETWEEN TWO INPUTS
+  			function switchInput(input1, input2){
+  				console.dir ("Switched: " + input1 + " & " + input2);
+  				var moveIt = ( $('#input0').height() * 2) + 2;
+  				var switchSpeed = 300;
 
+  				$(input2).css("background-color", "yellow");
 
+  				$(input1).animate({
+  					top: moveIt
+  				}, switchSpeed, function(){
+  						var holdInput = $(input1).val();
+  						$(input1).val( $(input2).val() );
+  						$(input2).val( holdInput );
+  						$(input2).css("background-color", "white");
+  						animateInput();
+  					});
 
-  			$('button').click(function(){
+  				$(input2).animate({
+  					top: (-1)*moveIt
+  				}, {duration: switchSpeed, queue: true});
+
+  				
+
+  				$(input1).animate({
+  					top: 0
+  				}, 0)
+
+  				$(input2).animate({
+  					top: 0
+  				}, 0)
+  				
+  			}
+
+  			function tableMaker(){
+  				tableString = "<table style='margin: auto'><tr><td colspan='2'>VALUES</td></tr>";
+  				inputCounter = $('input').length - 1;
+  				
+  				console.dir(inputCounter);
+  				
+  				for(i = 0; i < inputCounter; i++){
+  					tableString += "<tr><td>#" + i + "</td><td>" + $("#input"+i).val() + "</td></tr>";
+  				}
+
+  				tableString += "</table>";
+
+  				$('#tableContainer').append(tableString);
+
+  			}
+  			//ADD INPUTS TO PAGE
+  			$('#button1').click(function(){
   				totalCount = $('#iCount').val();
   				console.dir(totalCount);
 
@@ -87,25 +120,27 @@
   				}
 
   				$('#init').hide();
-  				
-				var arrInputs2 = [];
-  				//var temp = 1;
-  				//$('input1').val('test');
+
+  				//RANDOM VALUE INPUTS
   				for(var i = 0;i< totalCount;i++){
   					$('#input' + i).val(Math.floor((Math.random() * 5000) + 1));
-  					arrInputs.push($("#input" + i).val());
-  					arrInputs2.push($("#input" + i).val());
+  					arrInputs.push( parseInt( $("#input" + i).val() ) );
+  					arrInputs2.push( parseInt( $("#input" + i).val() ) );
   				}
 
-  				
-				console.dir(arrInputs2);
-
-  				bubbleSort();
-
-  				console.dir(arrInputs);
   			});
 
+
+  			//PLAYS QUEUE OF ANIMATIONS
+  			function animateInput(){
+  				if (aniPoint >= aniList.length) return;
+  				aniPoint++;
+  				aniPoint++;
+  				switchInput(aniList[aniPoint], aniList[aniPoint+1]);
+  			}
+
 			function bubbleSort() { 
+				aniList = [];
 				console.dir("Sort Begins: "); 
 			    var length = arrInputs.length;
 			    console.dir("Length: " + length);
@@ -122,12 +157,19 @@
 			                console.dir("Swap");
 
 			                //RUN ANIMATION
-			                $("#input" + j).val(arrInputs[j]);
-			                $("#input" + (j - 1)).val(arrInputs[j - 1]);
+			                aniList.push("#input" + (j-1));
+			                aniList.push("#input"+j);
+			                
 
 			            }
 			        }
 			    }
+
+			    console.dir(arrInputs2);
+			    console.dir(arrInputs);
+			    console.dir(aniList);
+			    aniPoint = -2;
+			    animateInput();
 			}
   
   	
