@@ -1,7 +1,16 @@
+<!--
+	Authored by: Sam Wetzel
+	Professor: Scott Morse
+	Completed 9/24/2017
+	Homework # 2
+-->
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
+	<!-- Header section of Document-->
 	<meta charset="utf-8">
 		<title>Homework Two</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +21,12 @@
 </head>
 
 <body>
+<!-- Body section of Document-->
 	<div class="myDiv">
 		<center><h1>Bubble Sort</h1></center><br>
-				<h3>Please enter five numbers between 0 and 5000.</h3>
+				<h3>How many inputs would you like? Keep in mind larger lists take more time to sort.</h3>
+
+				<h4>Once you decide your input size, enter it below.  Press enter first, then use the sort button to animate it. The Output table button to output your data raw.<br><br>
 
 		<div id="init">
 		<button id="button1">Enter</button>
@@ -25,20 +37,11 @@
 		</form>
 		<div id="sortButtonBox" style="padding: 0px 0px 30px 0px;"> 
 			<button id="bSort" onClick="bubbleSort()">Sort</button>
-			<button id="bAniTest" onClick="tableMaker()">Test Animation</button>
+			<button id="bAniTest" onClick="tableMaker()">Output Table Below</button>
 		 </div>
 		 <div id="tableContainer" style="margin:auto"></div>
 		</center>
-
-
-
 	</div>
-
-
-	
-
-
-
 
   <script
   	src="https://code.jquery.com/jquery-3.2.1.js"
@@ -46,7 +49,9 @@
   	crossorigin="anonymous">
  </script>
 
+<!-- jQuery and Javascript below-->
   <script>
+  			//Global Variables
   			var aniList = [];
   			var aniPoint = 0;
 
@@ -95,6 +100,7 @@
   				
   			}
 
+  			//Creates a table and exports it below the sort.
   			function tableMaker(){
   				tableString = "<table style='margin: auto'><tr><td colspan='2'>VALUES</td></tr>";
   				inputCounter = $('input').length - 1;
@@ -139,6 +145,7 @@
   				switchInput(aniList[aniPoint], aniList[aniPoint+1]);
   			}
 
+  			//Function to cause a bubblesort on click.
 			function bubbleSort() { 
 				aniList = [];
 				console.dir("Sort Begins: "); 
