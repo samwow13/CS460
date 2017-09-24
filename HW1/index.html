@@ -1,18 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>jQuery | Basics & Events</title>
-	<script src="js/jquery-3.2.1.min.js"></script>
+    <meta charset="utf-8">
+    	<title>Sam's Online Resume</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="shortcut icon" href="images/Donatelo.ico" />
 </head>
 <body>
-	<p>This is a paragraph</p>
-	<script>
-	$(document).ready(function(){
-		alert(1);
-	})
+
+ <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Sam's Online Resume</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="About.html">About</a></li>
+              <li><a href="Contact.html">Contact</a></li>
+              <li><a href="WorkHistory.html">Work History </a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
 
 
-	</script>
+      <div class="hero-unit">
+        <h1>About Me</h1>
+        <p>I am a Computer Science student at Western Oregon University currently working on my final year of school.  </p>
+        <p><a href="about.html" class="btn btn-primary btn-large">Click &raquo;</a></p>
+      </div>
+      <br>
+
+      <div class="middlePic">
+      	<img src="images/ForSiteMe.jpg" id="selfPicture" alt="Myself" style="width:300px;height:400px;">
+      </div>
+
+
+
+      <br>
+
+      <div class="row">
+        <div class="span4">
+          <h2>About</h2>
+          <p>Sed non blandit lorem, laoreet placerat ipsum. Praesent mollis sapien et felis pellentesque sodales. Quisque vestibulum ipsum nisi, ut commodo est pretium sit amet. Aliquam libero dolor, hendrerit a orci et, facilisis euismod erat. Suspendisse tincidunt faucibus ex, non malesuada lorem convallis nec. Ut dolor felis, ornare ut orci at, fringilla feugiat urna. Sed efficitur elementum risus ac convallis. Etiam vitae laoreet arcu, ac hendrerit orci. </p>
+          <p><a class="btn" href="About.html">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Contact</h2>
+          <p>Sed non blandit lorem, laoreet placerat ipsum. Praesent mollis sapien et felis pellentesque sodales. Quisque vestibulum ipsum nisi, ut commodo est pretium sit amet. Aliquam libero dolor, hendrerit a orci et, facilisis euismod erat. Suspendisse tincidunt faucibus ex, non malesuada lorem convallis nec. Ut dolor felis, ornare ut orci at, fringilla feugiat urna. Sed efficitur elementum risus ac convallis. Etiam vitae laoreet arcu, ac hendrerit orci. </p>
+          <p><a class="btn" href="Contact.html">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Work History</h2>
+          <p>Sed non blandit lorem, laoreet placerat ipsum. Praesent mollis sapien et felis pellentesque sodales. Quisque vestibulum ipsum nisi, ut commodo est pretium sit amet. Aliquam libero dolor, hendrerit a orci et, facilisis euismod erat. Suspendisse tincidunt faucibus ex, non malesuada lorem convallis nec. Ut dolor felis, ornare ut orci at, fringilla feugiat urna. Sed efficitur elementum risus ac convallis. Etiam vitae laoreet arcu, ac hendrerit orci.</p>
+          <p><a class="btn" href="WorkHistory.html">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="greyBack">
+      <br>
+      <br>
+
+      <footer>
+        <p>&copy; Sam Wetzel 2017</p>
+        <p> swetzel13@wou.edu</p>
+      </footer>
+      <br>
+      <br>
+
+      </div>
+    </div> 
+
 
 </body>
 </html>
