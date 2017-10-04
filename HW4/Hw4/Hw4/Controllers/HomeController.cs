@@ -27,6 +27,25 @@ namespace Hw4.Controllers
             }
             return View();
         }
+        
+        public ActionResult PostPage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PostPage(FormCollection form)
+        {
+            int user = form["username"].Length;
+            int pass = form["password"].Length;
+
+            string[] totalLength = { "Total Length: " + (user + pass)};
+
+            ViewBag.mess1 = "Username Length: " + user;
+            ViewBag.mess2 = "Password Length: " + pass;
+            ViewBag.data = totalLength;
+            return View();
+        }
 
     }
 }
