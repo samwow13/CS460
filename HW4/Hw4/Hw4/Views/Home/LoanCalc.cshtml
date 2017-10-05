@@ -2,10 +2,12 @@
 @{
     ViewBag.Title = "LoanCalc";
 
+    //Initializing Variables to these values
     var s = 1500;
     var i = 10.00;
     var t = 12;
 
+    //Checking to see if numbers have been input.
     if (IsPost)
     {
         s = Request["startingBalance"].AsInt();
@@ -14,24 +16,25 @@
     }
 }
 
-
+<!--Loan Calculator View Page created from the HomeController method for LoanCalc()-->
 <center><h2>Loan Calculator</h2></center>
 
 <div class="row">
     <form method="post">
+        <!--HTML for the input field and text box for starting balance-->
         <div class="form-group row">
             <label for="startingBalance">Starting Balance</label>
             <span>$</span>
             <input type="number" name="startingBalance" min="0" max="150000" step="1" maxlength="6" value="@s" />
             <span>.00</span>
         </div>
-
+        <!--HTML for the input field and text box for Interest-->
         <div class="form-group row">
             <label for="interest">Interest</label>
             <input type="number" name="interest" min="0.1" max="50.00" step="0.01" maxlength="6" value="@i" />
             <span>%</span>
         </div>
-
+        <!--HTML for the input field and text box for Time-->
         <div class="form-group row">
             <label for="time">Time</label>
             <input type="number" name="time" min="1" max="80" step="1" maxlength="6" value="@t" />
@@ -43,11 +46,13 @@
         </div>
     </form>
 
+    <!--If the Viewbag is empty, Error message.-->
     @if (ViewBag.Error != null)
     {
         <center><h3>@ViewBag.Error</h3></center>
     }
 
+    <!--If the method completed its work, the viewbag should be full, if so print out Monthly payment and sum.-->
     @if(ViewBag.Monthly != null)
     {
         <h3>Monthly Payment: @ViewBag.Monthly</h3>

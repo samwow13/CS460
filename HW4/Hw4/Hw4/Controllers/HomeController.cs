@@ -14,6 +14,10 @@ namespace Hw4.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Returns an view that contains two form inputs. If a user inputs words, they are made lowercase and output below.
+        /// </summary>
+        /// <returns>The GetView Object</returns>
         public ActionResult GetPage()
         {
             if (Request.QueryString.HasKeys())
@@ -28,11 +32,20 @@ namespace Hw4.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Generates a simple view of a input username and password.
+        /// </summary>
+        /// <returns>PostPage View object</returns>
         public ActionResult PostPage()
         {
             return View();
         }
 
+        /// <summary>
+        /// Takes a username and password, then tells you their given lenghts below
+        /// </summary>
+        /// <param name="form">Collection of form data</param>
+        /// <returns>The postpage object</returns>
         [HttpPost]
         public ActionResult PostPage(FormCollection form)
         {
@@ -47,15 +60,26 @@ namespace Hw4.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Gets the basic loanview form.
+        /// </summary>
+        /// <returns>Generic LoanCalc view object</returns>
         public ActionResult LoanCalc()
         {
             return View();
         }
 
+
+        /// <summary>
+        /// This method calculates monthly payments and total costs on loans
+        /// </summary>
+        /// <param name="startingBalance">Starting loan amount</param>
+        /// <param name="interest">Interest rate</param>
+        /// <param name="time">How many years</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult LoanCalc(int? startingBalance, double? interest, int? time)
         {
-
             double i = interest ?? -1.0;
             int t = time ?? -1;
             int s = startingBalance ?? -1;
@@ -65,7 +89,6 @@ namespace Hw4.Controllers
                 ViewBag.Error = "Please complete the form before submitting";
                 return View();
             }
-
             double monthlyRate = CalcMonth(s, i, t);
 
             ViewBag.Sum = Math.Round(monthlyRate * (t * 12), 2);
@@ -74,6 +97,13 @@ namespace Hw4.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Helper method that calculates values based off input
+        /// </summary>
+        /// <param name="s">Starting balance</param>
+        /// <param name="i">Interest</param>
+        /// <param name="t">Time based in years</param>
+        /// <returns></returns>
         public double CalcMonth(int s, double i, int t)
         {
             {
@@ -81,7 +111,6 @@ namespace Hw4.Controllers
                 monthInt = (i / 100) / 12;
                 double payment;
                 payment = t * 12;
-
 
                 return s * (monthInt / (1 - Math.Pow((1 + monthInt), -payment)));
             }

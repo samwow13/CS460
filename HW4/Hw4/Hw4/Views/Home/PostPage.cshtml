@@ -6,10 +6,12 @@
 <center><h2>PostPage Example</h2></center>
 <div>
     <form method="post" class="form-inline">
+        <!--Label and input for Username.-->
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" name="username" value="" />
         </div>
+        <!--Label and input for Password.-->
         <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" name="password" maxlength="30" value="" />
@@ -17,6 +19,7 @@
         <button type="submit">Submit</button>
     </form>
 
+    <!--Do this as long as the data is not null-->
     @if (ViewBag.data != null)
     {
         <div>
