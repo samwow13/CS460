@@ -15,7 +15,9 @@ namespace HW5.Controllers
         // GET: Request
         public ActionResult Index()
         {
-            return View(db.Request.ToList());
+                
+                     return View(db.Requests.ToList());
+
         }
 
         [HttpGet]
@@ -29,7 +31,7 @@ namespace HW5.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Request.Add(request);
+                db.Requests.Add(request);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

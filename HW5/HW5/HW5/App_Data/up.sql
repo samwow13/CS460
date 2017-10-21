@@ -30,7 +30,7 @@ CREATE TABLE [dbo].[Requests]
 );
 
 ----FILL TABLE----
-INSERT INTO [dbo].[Requests] (ODL, DoB, FullName, StreetAddress, City, states, ZipCode, County)
+INSERT INTO [dbo].[Requests] (ODL, DoB, FullName, StreetAddress, City, States, ZipCode, County)
 VALUES ('11222', '04071985', 'Sam Wetzel', '7265 Harmony Road', 'Sheridan', 'OR', '97378', 'Polk'),
 		('44222', '09031985', 'John Plough', '1024 Center Street', 'Mcminnville', 'OR', '97127', 'Yamhill'),
 		('23222', '03201975', 'Clair Warnicke', '3327 Willamina Road', 'Willamina', 'OR', '97375', 'Polk'),

@@ -9,6 +9,6 @@ namespace HW5.DAL
 {
     public class RequestContext : DbContext
     {
-        public DbSet<Request> Request { get; set; }
+        public DbSet<Request> Requests { get; set; }
     }
 }
