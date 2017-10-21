@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HW5.Models
 {
+    /// <summary>
+    /// Data model created to help with grabbing data from the db.
+    /// </summary>
     public class Request
     {
         public int ID { get; set; }

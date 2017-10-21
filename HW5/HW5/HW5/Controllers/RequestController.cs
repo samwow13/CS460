@@ -10,22 +10,29 @@ namespace HW5.Controllers
 {
     public class RequestController : Controller
     {
-        private RequestContext db = new RequestContext();
+        private RequestContext db = new RequestContext(); // new request context to connect to the database
         
-        // GET: Request
+        // index view for the request controller, returns the entries in the DMV records.
         public ActionResult Index()
         {
-                
                      return View(db.Requests.ToList());
-
         }
 
+        /// <summary>
+        /// returns a standard empty form to fill out.
+        /// </summary>
+        /// <returns>View </returns>
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// Method that modify's the database as needed.
+        /// </summary>
+        /// <param name="request">request params</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(Request request)
         {
