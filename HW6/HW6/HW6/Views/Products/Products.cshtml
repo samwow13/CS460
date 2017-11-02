@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HW6.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<!-- Subcategory name -->
+<center><h1 class="container">@Html.DisplayFor(modelItem => modelItem.FirstOrDefault().ProductSubcategory.Name)</h1></center><hr /><br /><br />
+
+
+<div class="row">
+    <!-- Display the name, product number, and price of each item -->
+    @foreach (var item in Model)
+    {
+        <center>
+            <div class="col-md-4" style="padding-bottom: 5em; text-size-adjust: auto">
+                <hr />
+                <div>
+                    @Html.ActionLink(item.Name, "Product", new { id = item.ProductID })
+                </div>
+                <div>
+                    Product #: @Html.DisplayFor(modelItem => item.ProductNumber)
+                </div>
+                <div>
+                    <br />
+                    $@Html.DisplayFor(modelItem => item.ListPrice)
+                    <hr />
+                </div>
+            </div>
+        </center>
+    }
+</div>
+<br />
+<br />
+<br />
+
+<!-- Create the links for the given amount of inquiries -->
+<div>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.NumberofPages; ++i)
+        {
+            <li>@Html.ActionLink(i.ToString(), "Products", new { id = Model.FirstOrDefault().ProductSubcategoryID, page = i })</li>
+        }
+    </ul>
+</div>
