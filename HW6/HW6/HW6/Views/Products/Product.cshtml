@@ -1,0 +1,128 @@
+﻿@model HW6.Models.Product
+
+@{
+    ViewBag.Title = "Product";
+}
+
+
+<center><h2>@Html.DisplayFor(model => model.ProductModel.Name)</h2></center>
+
+<div class="row col-md-12">
+    <h4>
+        <!-- Creates a link backwards -->
+        <span>@Html.ActionLink(Model.ProductSubcategory.Name, "Products/" + Model.ProductSubcategoryID)</span> >
+        <span>@Html.DisplayFor(model => model.ProductModel.Name)</span>
+    </h4>
+    <hr />
+
+    <div class="row col-md-8">
+        <!-- Display the properties of the product-->
+        <dl class="dl-horizontal col-md-5">
+            <dt>
+                Product #
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Color)
+            </dd>
+
+            <dt>
+                Price
+            </dt>
+
+            <dd>
+                $@Html.DisplayFor(model => model.ListPrice)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Size)
+            </dt>
+
+            <dd>
+                <span>@Html.DisplayFor(model => model.Size)</span><span> @ViewBag.SizeUnit</span>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Weight)
+            </dt>
+
+            <dd>
+                <span>@Html.DisplayFor(model => model.Weight)</span> @ViewBag.WeightUnit<span></span>
+            </dd>
+        </dl>
+    </div>
+</div>
+<br />
+<!-- Link to create a Review-->
+<p>@Html.ActionLink("Write a Review", "Review", new { id = Model.ProductID })</p>
+
+<!-- Drop down panel to view the Reviews of this product -->
+<div class="row panel-group col-md-12">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <!-- View Reviews toggle link on the left, Product Rating and number of reviews on the right-->
+                <a data-toggle="collapse" href="#collapseReviews">Reviews</a>
+                <span class="pull-right">Rating: @ViewBag.Rating (@ViewBag.NumofReviews)</span>
+            </h4>
+        </div>
+        <div id="collapseReviews" class="panel-collapse collapse">
+            <div class="panel-body">
+                <!-- If the product has no reviews, create a link to make a new one -->
+                @if (ViewBag.NumofReviews == 0)
+                {
+                    <span>@Html.ActionLink("What do you think of this item?", "Review", new { id = Model.ProductID })</span>
+                }
+                else
+                {
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Rating
+                            </th>
+                            <th>
+                                Comments
+                            </th>
+                        </tr>
+                        @foreach (var item in Model.ProductReviews.OrderByDescending(p => p.ReviewDate).ToList())
+                        { <!-- Display the properties of the reivew view.-->
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReviewerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReviewDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Rating)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Comments)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+            </div>
+           
+        </div>
+    </div>
+</div>
+<br />
+<p>
+    @Html.ActionLink("Return to List", "Products/" + Model.ProductSubcategoryID)
+</p>
