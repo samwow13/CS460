@@ -9,6 +9,8 @@
 
 <div class="row col-md-12">
     <h4>
+        
+        
         <!-- Creates a link backwards -->
         <span>@Html.ActionLink(Model.ProductSubcategory.Name, "Products/" + Model.ProductSubcategoryID)</span> >
         <span>@Html.DisplayFor(model => model.ProductModel.Name)</span>
@@ -16,6 +18,8 @@
     <hr />
 
     <div class="row col-md-8">
+        
+        
         <!-- Display the properties of the product-->
         <dl class="dl-horizontal col-md-5">
             <dt>
@@ -69,6 +73,9 @@
     <div class="panel panel-success">
         <div class="panel-heading">
             <h4 class="panel-title">
+               
+                
+                
                 <!-- View Reviews toggle link on the left, Product Rating and number of reviews on the right-->
                 <a data-toggle="collapse" href="#collapseReviews">Reviews</a>
                 <span class="pull-right">Rating: @ViewBag.Rating (@ViewBag.NumofReviews)</span>
@@ -76,6 +83,9 @@
         </div>
         <div id="collapseReviews" class="panel-collapse collapse">
             <div class="panel-body">
+              
+                
+                
                 <!-- If the product has no reviews, create a link to make a new one -->
                 @if (ViewBag.NumofReviews == 0)
                 {
@@ -98,6 +108,10 @@
                                 Comments
                             </th>
                         </tr>
+                   
+                        
+                        
+                        
                         @foreach (var item in Model.ProductReviews.OrderByDescending(p => p.ReviewDate).ToList())
                         { <!-- Display the properties of the reivew view.-->
                             <tr>
@@ -123,6 +137,9 @@
     </div>
 </div>
 <br />
+
+
+
 <p>
     @Html.ActionLink("Return to List", "Products/" + Model.ProductSubcategoryID)
 </p>

@@ -44,27 +44,62 @@ namespace HW6.Controllers
 
         public ActionResult Product(int? id)
         {
-            if (id == null) // product id wasn't indicated
+            if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var product = db.Products.Find(id);
 
-            if (product == null) // product doesn't exist
+            if (product == null) 
                 return HttpNotFound();
 
-            // get the number of product reviews, and if not 0, calculate the overall product rating
+            
             ViewBag.NumOfReviews = product.ProductReviews.Count;
             ViewBag.Rating = ViewBag.NumOfReviews == 0 ? "N/A" : Math.Round(product.ProductReviews.Average(p => p.Rating), 2).ToString() + "/5";
 
-            // get the unit of measure for the product size if it has one
+           
             var sizeUnit = product.SizeUnitMeasureCode;
             ViewBag.SizeUnit = sizeUnit == null ? "N/A" : product.SizeUnitMeasureCode.ToLower();
 
-            // get the unit of measure for the product weight if it has one
+            
             var weightUnit = product.WeightUnitMeasureCode;
             ViewBag.WeightUnit = weightUnit == null ? "N/A" : product.WeightUnitMeasureCode.ToLower();
 
             return View(product);
         }
+
+        [HttpGet]
+        public ActionResult Review(int? id)
+        {
+            int pid = id ?? -1;
+            if (pid == -1) 
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var product = db.Products.Find(pid);
+
+            if (product == null)
+                return HttpNotFound();
+            
+            ProductReview review = db.ProductReviews.Create();
+            review.ProductID = pid;
+            review.Product = product;
+            review.ReviewDate = review.ModifiedDate = DateTime.Now;
+
+            return View(review);
+        }
+
+        [HttpPost]
+        public ActionResult Review(ProductReview reviews)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ProductReviews.Add(reviews);
+                db.SaveChanges();
+                return RedirectToAction("Product", new { id = reviews.ProductID });
+            }
+            reviews.Product = db.Products.Find(reviews.ProductID);
+            return View(reviews);
+        }
+
+
     }
 }
