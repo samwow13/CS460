@@ -1,18 +1,20 @@
-﻿using System;
+﻿using HW8.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using HW8.Models;
 
 namespace HW8.Controllers
 {
-    public class HomeController : Controller
+    public class ArtworkController : Controller
     {
+        private ArtContext db = new ArtContext();
+
+        
         public ActionResult Index()
         {
-            return View();
+            return View(db.ArtWorks.ToList());
         }
-
     }
 }
