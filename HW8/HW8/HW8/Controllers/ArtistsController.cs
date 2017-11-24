@@ -95,7 +95,7 @@ namespace HW8.Controllers
                 ViewBag.Error = 1;
                 ViewBag.ErrorMessage = "Artist full name cannot be longer than 50 characters! Please make necessary changes";
             }
-
+     
             return View(newArtist);
         }
 
