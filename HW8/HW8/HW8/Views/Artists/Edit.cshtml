@@ -29,7 +29,16 @@
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                <!--If the Viewbag error equals null, then return the message created in the controller for errors.-->
+                @if (ViewBag.Error == 1)
+                {
+                    @Html.ValidationMessageFor(model => model.LastName, (string)ViewBag.ErrorMessage, new { @class = "text-danger"})
+                }
+                else
+                {
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                }
+               
             </div>
         </div>
 

@@ -78,15 +78,25 @@ namespace HW8.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,BirthDate,BirthCity,BirthCountry")] Artist artist)
+        public ActionResult Edit(Artist newArtist)
         {
-            if (ModelState.IsValid)
+            int nameLength = newArtist.FirstName.Length + newArtist.LastName.Length;
+
+            if (ModelState.IsValid && nameLength < 50)
             {
-                db.Entry(artist).State = EntityState.Modified;
+                var oldArtist = db.Artists.Find(newArtist.ID);
+                UpdateModel(oldArtist);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(artist);
+
+            if(nameLength  > 50)
+            {
+                ViewBag.Error = 1;
+                ViewBag.ErrorMessage = "Artist full name cannot be longer than 50 characters! Please make necessary changes";
+            }
+
+            return View(newArtist);
         }
 
         // GET: Artists/Delete/5
