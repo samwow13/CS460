@@ -11,6 +11,7 @@ namespace HW8.Controllers
     {
         private ArtContext db = new ArtContext();
         
+        // Creates a table that lists the contents of the classifcations table.
         public ActionResult Index()
         {
             return View(db.Classifications.ToList());

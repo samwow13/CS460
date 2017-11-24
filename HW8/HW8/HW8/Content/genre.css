@@ -1,3 +1,6 @@
-﻿#genreButtons button {
+﻿/*
+    adding margins to the buttons 
+*/
+#genreButtons button {
     margin-left: 10em;
 }

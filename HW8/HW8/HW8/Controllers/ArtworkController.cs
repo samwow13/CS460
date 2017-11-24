@@ -11,7 +11,7 @@ namespace HW8.Controllers
     {
         private ArtContext db = new ArtContext();
 
-        
+        // Returns a view that lists the Artworks table contents
         public ActionResult Index()
         {
             return View(db.ArtWorks.ToList());
