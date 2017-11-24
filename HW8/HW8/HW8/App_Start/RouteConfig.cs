@@ -13,6 +13,13 @@ namespace HW8
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Custom Route to allow for use of Ajax on the Home controller Index page.
+            routes.MapRoute(
+                name: "Genre",
+                url: "Home/GetGenre/{genre}",
+                defaults: new {controller = "Home", action = "GetGenre"}
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

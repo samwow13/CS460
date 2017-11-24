@@ -17,7 +17,7 @@ namespace HW8.Controllers
         // GET: Artists
         public ActionResult Index()
         {
-            return View(db.Artists.ToList());
+            return View(db.Artists.OrderBy(a => a.FirstName).ToList());
         }
 
         // GET: Artists/Details/5
