@@ -55,7 +55,7 @@ namespace final.Controllers
             {
                 db.Bids.Add(bid);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.BuyerID = new SelectList(db.Buyers, "ID", "FullName", bid.BuyerID);
